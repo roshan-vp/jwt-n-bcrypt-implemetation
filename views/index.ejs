@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    /* General body styling */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        background-color: black;
+        color: white;
+    }
+
+    /* --- Navbar Styling --- */
+    .navbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .nav-link a {
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link a:hover {
+        color: #007bff;
+    }
+
+    /* --- Mobile Menu Styling --- */
+    /* Hide the checkbox */
+    .menu-toggle {
+        display: none;
+    }
+
+    /* Style the hamburger icon */
+    .hamburger-icon {
+        display: none; /* Hidden on large screens by default */
+        cursor: pointer;
+        font-size: 2rem;
+        color: #333;
+        z-index: 20;
+    }
+
+    /* --- Responsive Behavior --- */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none; /* Hide the menu by default on small screens */
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #ffffff;
+            width: 70%;
+            height: 100vh;
+            padding-top: 5rem;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            z-index: 10;
+        }
+
+        .nav-link {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-link a {
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .hamburger-icon {
+            display: block; /* Show the hamburger icon */
+        }
+
+        /* Show the menu when the checkbox is checked */
+        .menu-toggle:checked ~ .nav-links {
+            transform: translateX(0);
+        }
+    }
+</style>
+</head>
+<body>
+    
+    
+
+<input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+<nav class="navbar">
+    <a href="/" class="navbar-brand">My App</a>
+    <label for="menu-toggle" class="hamburger-icon">&#9776;</label>
+    <ul class="nav-links">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about">About</a></li>
+        <li class="nav-link"><a href="/signup">Signup</a></li>
+        <li class="nav-link"><a href="/login">Login</a></li>
+        <li class="nav-link"><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+</body>
+</html>
