@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const bcrypt = require("bcrypt");
@@ -11,6 +13,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+
+const JWT_SECRET = process.env.SECRET;
 
 app.get("/", (req, res) => {
     res.render("index")
@@ -38,7 +42,7 @@ app.post("/signup", async (req, res) => {
             password: hashedPassword,
         })
 
-        let token = jwt.sign({email}, "ukululelule", {expiresIn: "1h"});
+        let token = jwt.sign({email}, JWT_SECRET, {expiresIn: "1h"});
         res.cookie("token", token, {httpOnly: true});
 
         res.redirect("/")
@@ -62,7 +66,7 @@ app.post("/login", async (req, res) => {
 
         isMatch = await bcrypt.compare(req.body.password, user.password);
         if(isMatch) {
-            let token = jwt.sign({email: user.email}, "ukululelule", {expiresIn: "1h"});
+            let token = jwt.sign({email: user.email}, JWT_SECRET, {expiresIn: "1h"});
             res.cookie("token", token, {httpOnly: true});
             res.redirect('/')
         } else {
